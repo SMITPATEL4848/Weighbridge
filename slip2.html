@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Printing Slip</title>
+<style>
+   @page {
+    size: A4;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+    box-sizing: border-box;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    /* border: 4px solid hsl(0, 0%, 90%); */
+}
+.header{
+    text-align: center;
+}
+.field{
+padding-bottom: 10px;
+padding-right: 50px;
+}
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 80%;
+    max-width: 40rem;
+    margin: 0 auto;    
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    font: 1rem / 1.5 sans-serif;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #333;
+    background-color: white;
+    border-radius: 0.125rem;
+}
+textarea {
+    min-height: 5rem;
+}
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 2.5px;
+    cursor: pointer;
+}
+.section2{
+    padding-bottom: 50px;
+    border: 4px solid hsl(0, 0%, 90%);
+    
+}
+@media print {
+    button {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="section2">
+    <div class="header">
+        <h1>JAY MATAJI WEIGHBRIDGE</h1>
+        <h2>PATAN-SHIHORI ROAD , PATAN</h2>
+    </div>
+    
+    <div class="form-container">
+        <div class="field">
+            <label for="dateTime">Date and Time:</label>
+            <input type="text" id="dateTime" readonly>
+        </div>
+        <div class="field">
+            <label for="truckNumber">Truck Number:</label>
+            <input type="text" id="truckNumber" readonly>
+        </div>
+        <div class="field">
+            <label for="totalWeight">Total Weight:</label>
+            <input type="text" id="totalWeight" readonly>
+        </div>
+        <div class="field">
+            <label for="tareWeight">Tare Weight:</label>
+            <input type="text" id="tareWeight" readonly>
+        </div>
+        <div class="field">
+            <label for="netWeight">Net Weight:</label>
+            <input type="text" id="netWeight" readonly>
+        </div>
+        <div class="field">
+            <label for="Price">Price:</label>
+            <input type="text" id="Price" readonly>
+        </div>
+    </div>
+</div>
+
+   <br><br><br><br>
+<hr>
+   <br><br><br><br>
+
+    <!-- Duplicate section -->
+    <div class="section2"> 
+    <div class="header">
+        <h1>JAY MATAJI WEIGHBRIDGE</h1>
+        <h2>PATAN-SHIHORI ROAD , PATAN</h2>
+    </div>
+    <div class="form-container">
+        <div class="field">
+            <label for="dateTime2">Date and Time:</label>
+            <input type="text" id="dateTime2" readonly>
+        </div>
+        <div class="field">
+            <label for="truckNumber2">Truck Number:</label>
+            <input type="text" id="truckNumber2" readonly>
+        </div>
+        <div class="field">
+            <label for="totalWeight2">Total Weight:</label>
+            <input type="text" id="totalWeight2" readonly>
+        </div>
+        <div class="field">
+            <label for="tareWeight2">Tare Weight:</label>
+            <input type="text" id="tareWeight2" readonly>
+        </div>
+        <div class="field">
+            <label for="netWeight2">Net Weight:</label>
+            <input type="text" id="netWeight2" readonly>
+        </div>
+        <div class="field">
+            <label for="Price2">Price:</label>
+            <input type="text" id="Price2" readonly>
+        </div>
+    </div>
+</div>
+    <!-- <button type="button" onclick="window.print()">Print</button> -->
+
+    <script>
+        function getQueryParams() {
+            var params = {};
+            window.location.search.substr(1).split("&").forEach(function(item) {
+                var pair = item.split("=");
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            });
+            return params;
+        }
+
+        function populateFields(params) {
+            document.getElementById('dateTime').value = params['dateTime'] || '';
+            document.getElementById('truckNumber').value = params['truckNumber'] || '';
+            document.getElementById('totalWeight').value = params['totalWeight'] || '';
+            document.getElementById('tareWeight').value = params['tareWeight'] || '';
+            document.getElementById('netWeight').value = params['netWeight'] || '';
+            document.getElementById('Price').value = params['Price'] || '';
+
+            document.getElementById('dateTime2').value = params['dateTime'] || '';
+            document.getElementById('truckNumber2').value = params['truckNumber'] || '';
+            document.getElementById('totalWeight2').value = params['totalWeight'] || '';
+            document.getElementById('tareWeight2').value = params['tareWeight'] || '';
+            document.getElementById('netWeight2').value = params['netWeight'] || '';
+            document.getElementById('Price2').value = params['Price'] || '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var params = getQueryParams();
+            populateFields(params);
+        });
+    </script>
+</body>
+</html>
+<!-- <script>
+    window.print();
+  </script> -->
