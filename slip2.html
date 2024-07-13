@@ -150,7 +150,6 @@ button {
         </div>
     </div>
 </div>
-    <!-- <button type="button" onclick="window.print()">Print</button> -->
 
     <script>
         function getQueryParams() {
@@ -178,13 +177,27 @@ button {
             document.getElementById('Price2').value = params['Price'] || '';
         }
 
+        function replaceSpacesForPrint() {
+            var inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(function(input) {
+                input.setAttribute('data-print-value', input.value.replace(/ /g, '+'));
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             var params = getQueryParams();
             populateFields(params);
         });
+
+        // Trigger replace spaces for print when printing
+        window.onbeforeprint = function() {
+            replaceSpacesForPrint();
+        };
+
+        // Print the document automatically when loaded
+        window.onload = function() {
+            window.print();
+        };
     </script>
 </body>
 </html>
-<script>
-    window.print();
-  </script>
