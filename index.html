@@ -143,6 +143,10 @@ button {
             e.preventDefault();
             var form = document.getElementById('form');
             var queryString = serializeForm(form);
+
+            // Explicitly replace spaces with '+' for safety
+            // queryString = queryString.replace(/\+/g, '%20').replace(/%20/g, '+');
+
             window.open('slip2.html?' + queryString, '_blank');
         }
 
